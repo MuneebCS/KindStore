@@ -3,7 +3,8 @@ package com.example.kindstore.utils.theme
 import androidx.compose.ui.graphics.Color
 
 
-val primary = Color(0xFFBBBDBC)
+val primaryColor = Color(0xFFBBBDBC)
+val errorColors = Color(0xFFE53935)
 //val secondary = Color(0xFF245F73) by defualt
 
 interface ThemeColors {

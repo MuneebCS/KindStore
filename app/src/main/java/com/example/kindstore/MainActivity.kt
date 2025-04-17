@@ -31,7 +31,7 @@ class MainActivity : ComponentActivity() {
                 ) { innerPadding ->
                     NavHost(
                         navController = navController,
-                        startDestination = Routes.splash,
+                        startDestination = Routes.auth,
                         modifier = Modifier
                             .consumeWindowInsets(innerPadding)
                             .padding(innerPadding)

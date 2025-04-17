@@ -12,18 +12,4 @@ object FontTypes {
 
 val appTypography = Typography(
     displayLarge = TextStyle(fontFamily = FontTypes.robotoFont),
-    displayMedium = TextStyle(fontFamily = FontTypes.robotoFont),
-    displaySmall = TextStyle(fontFamily = FontTypes.robotoFont),
-    headlineLarge = TextStyle(fontFamily = FontTypes.robotoFont),
-    headlineMedium = TextStyle(fontFamily = FontTypes.robotoFont),
-    headlineSmall = TextStyle(fontFamily = FontTypes.robotoFont),
-    titleLarge = TextStyle(fontFamily = FontTypes.robotoFont),
-    titleMedium = TextStyle(fontFamily = FontTypes.robotoFont),
-    titleSmall = TextStyle(fontFamily = FontTypes.robotoFont),
-    bodyLarge = TextStyle(fontFamily = FontTypes.robotoFont),
-    bodyMedium = TextStyle(fontFamily = FontTypes.robotoFont),
-    bodySmall = TextStyle(fontFamily = FontTypes.robotoFont),
-    labelLarge = TextStyle(fontFamily = FontTypes.robotoFont),
-    labelMedium = TextStyle(fontFamily = FontTypes.robotoFont),
-    labelSmall = TextStyle(fontFamily = FontTypes.robotoFont)
 )
