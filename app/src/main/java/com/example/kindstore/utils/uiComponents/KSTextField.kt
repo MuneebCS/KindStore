@@ -1,5 +1,6 @@
 package com.example.kindstore.utils.uiComponents
 
+import android.annotation.SuppressLint
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -19,6 +20,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.text.font.FontWeight
 import com.example.kindstore.utils.fonts.FontTypes
 import com.example.kindstore.utils.theme.getTheme
 import com.example.kindstore.utils.theme.primaryColor
@@ -35,14 +37,15 @@ fun KTTextField(
     trailingIcon: Painter? = null,
     onTrailingIconClick: (() -> Unit)? = null,
     modifier: Modifier = Modifier,
+    height: Dp = 56.dp,
+    width: Dp = 400.dp,
     enabled: Boolean = true,
     isError: Boolean = false,
-    unfocusedColor: Color = primaryColor,
-    focusedColor: Color = getTheme().secondary,
+    unfocusedColor: Color = getTheme().secondary,
+    focusedColor: Color = primaryColor,
     backgroundColor: Color = primaryColor,
     errorColor: Color = errorColors,
-    textColor: Color = Color.Black,
-    iconTint: Color = getTheme().secondary,
+    textColor: Color = getTheme().secondary,
     leadingIconSize: Dp = 20.dp,
     trailingIconSize: Dp = 20.dp,
     cornerRadius: Dp = 10.dp
@@ -54,7 +57,8 @@ fun KTTextField(
             labelValue?.let {
                 Text(
                     text = it,
-                    fontSize = 14.sp,
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.Bold,
                     fontFamily = FontTypes.robotoFont,
                 )
             }
@@ -64,7 +68,6 @@ fun KTTextField(
                 Icon(
                     painter = it,
                     contentDescription = null,
-                    tint = iconTint,
                     modifier = Modifier.size(leadingIconSize)
                 )
             }
@@ -75,7 +78,6 @@ fun KTTextField(
                     Icon(
                         painter = it,
                         contentDescription = null,
-                        tint = iconTint,
                         modifier = Modifier.size(trailingIconSize)
                     )
                 }
@@ -88,40 +90,40 @@ fun KTTextField(
         colors = OutlinedTextFieldDefaults.colors(
             focusedTextColor = textColor,
             unfocusedTextColor = textColor,
-            disabledTextColor = textColor.copy(alpha = 0.5f),
             errorTextColor = errorColor,
 
             focusedContainerColor = backgroundColor,
             unfocusedContainerColor = backgroundColor,
-            disabledContainerColor = backgroundColor,
             errorContainerColor = backgroundColor,
 
             cursorColor = if (isError) errorColor else focusedColor,
 
             focusedBorderColor = if (isError) errorColor else focusedColor,
             unfocusedBorderColor = unfocusedColor,
-            disabledBorderColor = unfocusedColor.copy(alpha = 0.3f),
             errorBorderColor = errorColor,
 
             focusedLabelColor = if (isError) errorColor else focusedColor,
             unfocusedLabelColor = unfocusedColor,
-            disabledLabelColor = unfocusedColor.copy(alpha = 0.3f),
             errorLabelColor = errorColor,
 
-            focusedLeadingIconColor = if (isError) errorColor else focusedColor,
+            focusedLeadingIconColor = if (isError) errorColor else unfocusedColor,
             unfocusedLeadingIconColor = unfocusedColor,
             errorLeadingIconColor = errorColor,
 
-            focusedTrailingIconColor = if (isError) errorColor else focusedColor,
+            focusedTrailingIconColor = if (isError) errorColor else unfocusedColor,
             unfocusedTrailingIconColor = unfocusedColor,
             errorTrailingIconColor = errorColor
         ),
-        modifier = modifier.fillMaxWidth()
+
+        modifier = modifier
+            .then(if (width != Dp.Unspecified) Modifier.width(width) else Modifier)
+            .height(height),
     )
 }
 
 
 
+@SuppressLint("SuspiciousIndentation")
 @Preview(showBackground = true)
 @Composable
 fun KTTextFieldFullPreview() {
@@ -137,9 +139,6 @@ fun KTTextFieldFullPreview() {
             onTrailingIconClick = { text = "" },
             isError = isError,
             enabled = isEnabled,
-            unfocusedColor = Color.Gray,
-            backgroundColor = Color(0xFFF0F0F0),
-            textColor = Color.Black,
             leadingIconSize = 24.dp,
             trailingIconSize = 24.dp,
             cornerRadius = 20.dp

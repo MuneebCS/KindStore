@@ -19,9 +19,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.kindstore.utils.fonts.FontTypes
@@ -39,7 +43,7 @@ fun KTTextButton(
     backgroundColor: Color = getTheme().secondary,
     contentColor: Color = primaryColor,
     borderColor: Color = primaryColor,
-    borderWidth: Dp = 1.dp,
+    borderWidth: Dp = 2.dp,
     cornerRadius: Dp = 10.dp,
     textColor: Color = primaryColor,
     enabled: Boolean = true,
@@ -73,7 +77,8 @@ fun KTTextButton(
             text = text,
             color = textColor,
             fontSize = 16.sp,
-            fontFamily = FontTypes.robotoFont
+            fontFamily = FontTypes.robotoFont,
+            fontWeight = FontWeight.SemiBold
         )
     }
 }
@@ -112,6 +117,41 @@ fun KTIconButton(
     }
 }
 
+@Composable
+fun KTTextButton(
+    text: String,
+    onTap: () -> Unit,
+    modifier: Modifier = Modifier,
+    textColor: Color = primaryColor,
+    fontSize: TextUnit = 16.sp,
+    fontFamily: FontFamily = FontTypes.robotoFont,
+    fontWeight: FontWeight = FontWeight.SemiBold,
+    letterSpacing: TextUnit = 0.sp,
+    textStyle: TextStyle = TextStyle.Default,
+    textAllCaps: Boolean = false,
+    isunderline: Boolean = false,
+) {
+    TextButton(
+        onClick = onTap,
+        modifier = modifier,
+        contentPadding = PaddingValues(0.dp) // No extra padding around text
+    ) {
+        Text(
+            text = if (textAllCaps) text.uppercase() else text,
+            color = textColor,
+            fontSize = fontSize,
+            fontFamily = fontFamily,
+            fontWeight = fontWeight,
+            letterSpacing = letterSpacing,
+            style = textStyle,
+            textDecoration = if (isunderline) TextDecoration.Underline else TextDecoration.None,
+        )
+    }
+}
+
+
+
+
 
 
 
@@ -133,18 +173,10 @@ fun ButtonPreviewScreen() {
             modifier = Modifier.fillMaxWidth(),
             height = 60.dp,
             width = Dp.Unspecified,
-            backgroundColor = getTheme().secondary,
-            contentColor = getTheme().secondary,
-            borderColor = Color.White,
-            borderWidth = 2.dp,
-            cornerRadius = 12.dp,
-            textColor = Color.Yellow,
-            enabled = true,
             icon = {
                 Icon(
                     imageVector = Icons.Default.Favorite,
                     contentDescription = null,
-                    tint = Color.White
                 )
             },
             padding = PaddingValues(horizontal = 20.dp, vertical = 12.dp),
@@ -171,7 +203,18 @@ fun ButtonPreviewScreen() {
             enabled = true,
             elevation = ButtonDefaults.buttonElevation(defaultElevation = 4.dp)
         )
-
+        KTTextButton(
+            text = "Click Me",
+            onTap = { /* Handle tap */ },
+            modifier = Modifier.fillMaxWidth(),
+            textColor = Color.White,
+            fontSize = 16.sp,
+            fontFamily = FontTypes.robotoFont,
+            fontWeight = FontWeight.SemiBold,
+            letterSpacing = 0.sp,
+            textStyle = TextStyle.Default,
+            textAllCaps = true
+        )
 
     }
 }
